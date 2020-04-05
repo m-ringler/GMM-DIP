@@ -1,0 +1,56 @@
+% $Id: prog.tex,v 1.5 2008/02/11 19:23:22 Moritz.Ringler Exp $
+% Kein unabhaengiges LaTeX-Dokument!
+% Master-Dokument: diss.tex
+%
+\definecolor{darkblue}{rgb}{0,0.08,0.45}
+\maketitle
+
+\section{About this document}
+GMM-FIELD is a computer program that calculates the local electric field in an
+aggregate of spherical particles that is hit by a plane light wave. Its companion
+GMM-DIP calculates the absorbed and emitted power when a Hertzian dipole is placed
+inside such an aggregate. Both programs were developed as part of my PhD thesis
+\cite{phdrin08}, and I used them to calculate the theoretical results published in
+\cite{bek07} and \cite{rin08}. This was possible only because Yu-Lin Xu
+had published the source code of GMM and because Thomas Wriedt had kept it publicly
+accessible on his Electromagnetic Scattering Programs web site \cite{wwwwriedt}.
+Therefore, I decided to also publish the source code of GMM-FIELD and GMM-DIP
+on the web.
+Thomas Wriedt soon found out and included GMM-DIP and GMM-FIELD in his list of
+scattering programs. Subsequently, he was asked about an English document that
+describes how the programs can be used and he forwarded this
+request to me. Lacking the time to write a comprehensive manual I agreed to
+translate the relevant sections of my PhD thesis, and the result is the present
+document. Please also read the GMM manual included in the original GMM package,
+which is hosted on the Two Particle Scattering subpage of \cite{wwwwriedt}.
+If you need further assistance using GMM-FIELD and GMM-DIP feel free to contact
+me at gmm@momail.e4ward.com
+
+\section{Bugs and fixes}
+The original GMM-Field and GMM-DIP used a wrong normalization for the vector
+spherical wave functions. This bug was discovered and fixed by Matthew Arnold, from UTS
+Sidney, Australia. The fix has been included in the web release on 2009-07-13.
+The bug does not affect the cross sections (GMM-FIELD) and rates (GMM-DIP) but will lead
+to wrong results for the near field. In the cases that I have tested the
+results with the bug are not far off from the correct ones. But there might be
+cases where they are.
+
+On 2014-01-16, another bug was found that might lead to incorrect higher-order
+contributions to the near-field when the actual truncation order nmax(i) for one
+of the other spheres/particles is greater than that of the first sphere/particle.
+This bug was fixed in the web release on 2014-01-16.
+
+GMM-FIELD and GMM-DIP are based on the 2001 GMM distribution and do
+not contain any fixes from the 2003 version.
+
+\section{Citing GMM-FIELD and GMM-DIP}
+If you want to cite GMM-FIELD or GMM-DIP in a scientific article I would suggest
+that you cite either \cite{phdrin08} or \cite{rin08}. Please also consider citing
+Yu-Lin Xu's articles on the subject \cite{xuy95, xuy95err, xuy97, xuy98}. If you
+want to tell your readers where to get the code I would suggest that you refer
+them to the "Two particle scattering" subsection of \cite{wwwwriedt}.
+
+\include{diss/anhang/prog/gmmf_en}
+\include{diss/anhang/prog/gmmdip_en}
+%\include{diss/anhang/prog/pda}
+

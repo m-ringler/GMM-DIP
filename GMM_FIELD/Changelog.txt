@@ -1,0 +1,16 @@
+Changelog for GMM_FIELD by Moritz Ringler
+(based on GMM by Yu-Lin Xu)
+
+2014-01-16 * BUGFIX In field.f in the call to normlz.f the first argument must be np not nmax. With the examples I looked at, this bug did not affect the results but it might affect the near field results in other cases.
+2011-11-23 * Replaced /bin/sh shebang in example scripts with /bin/bash
+2009-07-13 * BUGFIX by Matthew Arnold: The normalization of the VSWF used to calculate the near field was wrong.
+2009-05-24 * Added info about compile time parameters to gmmfield.pdf
+2009-02-09 * Added gmmfield.pdf
+2009-01-12 * Fixed /examples/au-2s/bek08/*/gmmfield scripts
+           * Added matlab/octave file visualize.m
+2008-06-24 * Changed file permissions where necessary
+2008-06-23 * Replaced (broken) symbolic links to gmmfield in example directories
+             by shell scripts
+           * Changed all .nk file names to lowercase
+2008-05-09 * Original distribution
+

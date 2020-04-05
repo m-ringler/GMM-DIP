@@ -1,3 +1,5 @@
+*~
+
 # Prerequisites
 *.d
 
@@ -30,3 +32,8 @@
 *.exe
 *.out
 *.app
+
+/GMM_DIP/gmmdip
+/GMM_FIELD/gmmfield
+/GMM_Manual/gmm/diss.pdf
+
