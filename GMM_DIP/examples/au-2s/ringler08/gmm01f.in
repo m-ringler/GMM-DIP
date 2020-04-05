@@ -1,0 +1,11 @@
+tmp.k
+1 1 1 = number of orientations (nbeta,nthet,nphai)
+0. 0. 0. 0. 0. 0. = orientations (betami,betamx,thetmi,thetmx,phaimi,phaimx)
+0 = "idMie=1: calculating only coherent Mie-scattering, no interaction"
+0
+0  10000 = orientation averaging mode, random seed
+0.7 0.7 100 = iteration scheme x, iteration scheme y, maximum number of iterations
+20 = scattering order control
+1.d-20 1.d-20 = error tolerance, convergence criterion
+0. = interaction index
+0. 0. = output angle intervals

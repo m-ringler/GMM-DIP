@@ -1,0 +1,19 @@
+#!/bin/bash
+GMMDIR=../../..
+GMMDIP="$GMMDIR/gmmdip"
+if [[ ! -f "$GMMDIP" ]]
+then
+    echo >&2
+    echo $GMMDIP does not exist. >&2
+    echo Please run make in $( readlink -f "$GMMDIR") >&2
+    exit 1
+elif [[ ! -x "$GMMDIP" ]]
+then
+    echo >&2
+    echo You do not have permission to execute gmmfield. >&2
+    echo Please run >&2
+    echo chmod u+x $( readlink -f "$GMMDIP") >&2
+    exit 1
+else
+    "$GMMDIP"
+fi

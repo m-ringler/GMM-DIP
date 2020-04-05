@@ -1,0 +1,40 @@
+#!/bin/bash
+source=diss
+alias lx="latex -c-style-errors -src-specials ${source}"
+alias bx="bibtex ${source}"
+alias px="pdflatex -c-style-errors ${source}"
+alias tx="texify ${source}.tex"
+alias tpx="texify --pdf ${source}.tex"
+alias acr="'cmd /c start' ${source}.pdf"
+alias xpdf="pdfclose --file=${source}.pdf"
+alias vpdf="pdfopen --file=${source}.pdf"
+alias rmbak="find \( -name '*~' -or -name '*.bak' \) -and -exec rm -rf '{}' \\;"
+alias spell='aspell --lang=de --mode=tex -c'
+alias nx='makeindex diss.nlo -s nomencl.ist -o diss.nls'
+alias ix='makeindex -g -c diss.idx -s diss.ist -o diss.ind'
+alias bsh="java -cp '/home/ringler/java/bsh-2.0b4.jar' bsh.Interpreter "
+alias vdvi="yap ${source}.dvi &"
+
+strip_extension(){
+    echo $1 | sed -r 's/\.[^\.]+$//'
+}
+
+# an intelligent epstopdf that checks whether the
+# pdf file is older than the eps
+eps2pdf() {
+    basenm=$(strip_extension $1)
+    pdf=$basenm.pdf
+    jpg=$basenm.jpg
+    if [[ ! -f $jpg && (! -f $pdf || $1 -nt  $pdf) ]]
+    then
+        epstopdf $1
+    fi
+}
+
+eps2pdfabb(){
+    for f in *.eps
+    do
+        echo $f
+        eps2pdf $f
+    done
+}

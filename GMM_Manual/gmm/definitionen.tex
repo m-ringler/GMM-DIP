@@ -1,0 +1,270 @@
+% $Id: definitionen.tex,v 1.33 2008/03/11 09:02:38 Moritz.Ringler Exp $
+
+% Layout und Satz
+%---------------------------------------------
+%Kopf- und Fusszeile
+\pagestyle{scrheadings}
+\clearscrheadings
+\clearscrplain
+\lohead{\headmark}
+\ifrcs{
+    \lofoot{\RCSId}
+    \refoot{\RCSId}
+}{}
+\lefoot[\pagemark]{\pagemark}
+\rofoot[\pagemark]{\pagemark}
+\setfootsepline{.4pt} % Ganzunten
+%---------------------------------------------
+% Rueckverweise im Literaturverzeichnis
+%\renewcommand*{\backref}[1]{} % backref wird ausgeschaltet
+%\renewcommand*{\backrefalt}[4]{ % backrefalt umdefiniert
+%\ifcase #1 %keine Seite
+%[nicht zitiert] %
+%\or % genau eine Seite
+%\mbox{[$\rightarrow$ Seite #2]}
+%\else % mehrere Seiten
+%\mbox{[$\rightarrow$ Seiten #2]}
+%\fi
+%}
+% Zeichenkette zwischen genau 2 Seiten
+%\renewcommand*{\backreftwosep}{ und~}
+% Zeichenkette zwischen den beiden letzten von > 2 Seiten
+%\renewcommand*{\backreflastsep}{ und~}
+%----------------------------------------------
+% Captions
+%\renewcommand{\captionlabelsep}{\/\ }
+%----------------------------------------------
+% Sonstige Verzeichnisse, Indices
+% Symbolverzeichnis
+
+
+%Standardindex
+% default: Dies ist der Standardindex, es muss kein Bezeichner angegeben werden
+% idx: Erweiterung fuer MakeIndex-Eingabedatei
+% ind: Erweiterung fuer MakeIndex-Ausgabedatei
+% Index: Name fuer den Index
+\newindex{default}{idx}{ind}{Index}
+
+%\sloppy
+
+\newcommand{\uri}[1]{\href{#1}{#1}}
+
+\newenvironment{myTitlepage}{ %
+    \thispagestyle{empty}
+    \addtolength{\oddsidemargin}{0.5cm}
+    \begin{titlepage}
+    %\addtolength{\textwidth}{1.6cm}
+    \begin{minipage}{\textwidth}
+    \centering
+}{
+    \end{minipage}
+    %\addtolength{\textwidth}{-1.6cm}
+    \enlargethispage{5 \baselineskip}
+    \end{titlepage}
+    \addtolength{\oddsidemargin}{0.5cm}
+}
+%\numberwithin{equation}{section}
+
+%\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\arraystretch}{0.97}
+\newcommand{\foreign}[1]{\textsl{#1}}
+\newcommand{\begriff}[1]{{#1}}
+\newcommand{\refeqn}[1]{Eq.~\eqref{#1}}
+%thesis class benutzt fuer captions \figureshortname,
+%wird in ngerman.sty/german.sty nicht umdefiniert.
+%\newcommand{\figureshortname}{Abb.}
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+%\newcommand{\refapp}[1]{Anhang~\ref{#1}}
+%\newcommand{\reftab}[1]{Tabelle~\ref{#1}}
+\newcommand{\code}[1]{{\texttt{#1}}}
+\newcommand{\bookmark}[3][]{\ifhyperref{\hypertarget{#3}{}\pdfbookmark[#1]{#2}{#3}}{}}
+\renewcommand{\dictumwidth}{0.41 \textwidth}
+
+% Meta-Daten
+% uncomment exactly one of the following two lines
+%\newcommand{\cvsvers}{}
+\newcommand{\cvsvers}{{\tiny(Rev. \RCSRevision{}, \RCSDate{})\newline}}
+
+% numerische Werte
+\newcommand{\eee}[1]{\ensuremath{10^{#1}}}
+\newcommand{\val}[2]{\ensuremath{#1}\text{\,#2}}
+\newcommand{\ee}[2]{\ensuremath{#1\times\eee{#2}}}
+\newcommand{\valee}[3]{\val{\ee{#1}{#2}}{#3}}
+\newcommand{\mikro}[1]{\ensuremath{\text{\micro#1}}}
+\newcommand{\ftow}[1]{\ensuremath{2\pi \!\times\!#1}}
+
+% nanoantenna.tex
+\newcommand{\wexc}{\ensuremath{\omega_\mathrm{exc}}}
+\newcommand{\rexc}{\ensuremath{\gamma_\mathrm{exc}}}
+\newcommand{\rexci}{\ensuremath{\gamma_{\mathrm{exc}\, 0}}}
+\newcommand{\qe}{\ensuremath{\eta}}
+\newcommand{\rr}{\ensuremath{\gamma_\mathrm{r}}}
+\newcommand{\rri}{\ensuremath{\gamma_{\mathrm{r}\, 0}}}
+\newcommand{\ret}{\ensuremath{\gamma_\mathrm{ET}}}
+\newcommand{\rfluo}{\ensuremath{\gamma_\mathrm{Fluo}}}
+\newcommand{\rxr}{\ensuremath{\gamma_{\mathrm{nr}}}}
+
+% chem. Elemente
+\newcommand{\element}[2]{#1 #2}
+\newcommand{\selement}[2]{\ensuremath{\kern0.05em^{#2}}\kern-0.1em#1}
+
+% thermodyn. und statistische Groessen
+\newcommand{\ldb}{\ensuremath{\lambda_{\mathrm{dB}}}}
+\newcommand{\kb}{\ensuremath{k_\mathrm{B}}}
+\newcommand{\visc}{\ensuremath{\tilde{\eta}}}
+%\newcommand{\Tkrit}{\ensuremath{T_c}}
+%\newcommand{\Tdop}{\ensuremath{T\!_\mathrm{D}}}
+%\newcommand{\dm}{\qop{\rho}}
+%\newcommand{\dmel}[2]{\ensuremath{ \rho_{#1 #2}}}
+
+%Goldpartikel
+\newcommand{\npr}{\ensuremath{R}} %Nanopartikelradius
+\newcommand{\cro}[1]{\ensuremath{\sigma_{\mathrm{#1}}}} % Wirkungsquerschnitt
+
+%dielektr. Funktion
+\newcommand{\epsi}[1]{\ensuremath{\varepsilon_{\mathrm{#1}}}}
+\newcommand{\epsint}{\epsi{\mathcal{I}}}
+\newcommand{\epsext}{\epsi{\mathcal{A}}}
+
+% mathematische Konstrukte
+% a function named #1 with argument #2; both in math
+\newcommand{\func}[2]{\ensuremath{#1 \text{\small$\left(#2\right)$}}}
+
+\renewcommand{\vec}[2][]{\ensuremath{\boldsymbol{#2}_{#1}}}
+\renewcommand{\Re}{\mathfrak{Re}\kern-0.05em}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+% Einheitsvektoren
+\newcommand{\er}{\ensuremath{\vec[r]{\hat{e}}}}
+\newcommand{\ex}{\ensuremath{\vec[x]{\hat{e}}}}
+\newcommand{\ephi}{\ensuremath{\vec[\phi]{\hat{e}}}}
+\newcommand{\etheta}{\ensuremath{\vec[\theta]{\hat{e}}}}
+
+% em Felder und andere vektorielle Groessen
+
+\newcommand{\evec}{\ensuremath{\vec{E}}}
+\newcommand{\hvec}{\ensuremath{\vec{H}}}
+\newcommand{\kvec}{\ensuremath{\vec{k}}}
+\newcommand{\eovec}{\ensuremath{\vec[0]{E}}}
+\newcommand{\escat}{\ensuremath{\vec[\mathrm{str}]{E}}}
+\newcommand{\eint}{\ensuremath{\vec[\mathcal{I}]{E}}}
+\newcommand{\einc}{\ensuremath{\vec[\mathrm{in}]{E}}}
+\newcommand{\hscat}{\ensuremath{\vec[\mathrm{str}]{H}}}
+\newcommand{\hint}{\ensuremath{\vec[\mathcal{I}]{H}}}
+\newcommand{\hinc}{\ensuremath{\vec[\mathrm{in}]{H}}}
+\newcommand{\bvec}{\ensuremath{\vec{B}}}
+\newcommand{\rvec}{\ensuremath{\vec{r}}}
+\newcommand{\rovec}{\ensuremath{\vec[0]{r}}}
+\newcommand{\evecr}{\func{\evec}{\rvec}}
+\newcommand{\hvecr}{\func{\hvec}{\rvec}}
+\newcommand{\pvec}{\ensuremath{\vec{S}}}
+\newcommand{\pvect}[1]{\ensuremath{\vec[\mathrm{#1}]{S}}}
+
+% Mietheorie
+\newcommand{\mmnj}{\ensuremath{\boldsymbol{M}^j_{mn}}}
+\newcommand{\nmnj}{\ensuremath{\boldsymbol{N}^j_{mn}}}
+\newcommand{\mmnbj}{\ensuremath{\boldsymbol{M}^{j\;\beta}_{mn}}}
+\newcommand{\nmnbj}{\ensuremath{\boldsymbol{N}^{j\;\beta}_{mn}}}
+\newcommand{\mm}[2]{\ensuremath{\boldsymbol{M}^{\,#1\, #2}_{mn}}}
+\newcommand{\nn}[2]{\ensuremath{\boldsymbol{N}^{\,#1\, #2}_{mn}}}
+
+\newcommand{\mmn}[1]{\ensuremath{\boldsymbol{M}^{#1}_{mn}}}
+\newcommand{\nmn}[1]{\ensuremath{\boldsymbol{N}^{#1}_{mn}}}
+\newcommand{\pimn}{\ensuremath{\pi_{mn}}}
+\newcommand{\taumn}{\ensuremath{\tau_{mn}}}
+\newcommand{\pmn}{\ensuremath{P^m_n}}
+\newcommand{\emn}{\ensuremath{E_{mn}}}
+\newcommand{\reln}{\ensuremath{\nu}}
+\newcommand{\tilmn}{\ensuremath{{\tilde{m}\tilde{n}}}}
+
+\newcommand{\lmax}{\ensuremath{\lambda_\mathrm{max}}}
+
+\newcommand{\rvecp}[1][]{\ensuremath{\rvec{#1}'}}
+\newcommand{\ri}[1]{\ensuremath{r_{#1}}}
+\newcommand{\ucv}[1]{\ensuremath{\vec[#1]{e}}}
+\newcommand{\magdip}{p}
+%\newcommand{\xioffe}{x\kern-0.1em_I}
+%\newcommand{\yioffe}{y\kern-0.1em_I}
+%\newcommand{\zioffe}{z\kern-0.1em_I}
+
+
+% the scalar product of #1 and #2
+\newcommand{\scp}[2]{\ensuremath{#1 \cdot #2}}
+% complex conjugate
+\newcommand{\conj}[1]{\ensuremath{#1^{*}}}
+% imaginary i
+\newcommand{\imi}{\ensuremath{i}}
+% upright d for integrals
+\newcommand{\dint}{\text{d}}
+% derivative d#1/d#2
+\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d}#1}{\mathrm{d}#2}}}
+\newcommand{\diff}[1]{\ensuremath{\frac{\mathrm{d}}{\mathrm{d}#1}}}
+% exponential function as e^#1
+\newcommand{\expe}[1]{\ensuremath{\text{e}^{#1}}}
+% exponential function as exp(#1)
+\renewcommand{\exp}[1]{\func{\text{exp}}{#1}}
+% the big O for approximations
+\newcommand{\bigo}[1]{\ensuremath{\func{\mathcal{O}}{#1}}}
+% constant
+\newcommand{\const}{\ensuremath{const}}
+% the dirac delta "function"
+\newcommand{\dirac}[1][\rvec]{\ensuremath{\func{\delta}{#1}}}
+% a statistical average < #1 >
+\newcommand{\statav}[1]{\langle #1\rangle}
+% an equals sign with not too much space around it
+\newcommand{\teq}{\kern-0.27em=\kern-0.1em} % tight equals
+% the absolute value of something
+\newcommand{\abs}[1]{\lvert#1\rvert}
+% the vector norm
+\newcommand{\vnorm}[1]{\ensuremath{\|#1\|}}
+% the laplace operator
+\newcommand{\lapl}{\triangle}
+% the nabla operator
+%\newcommand{\nabla}{\triangledown}
+% the divergence operator
+\DeclareMathOperator{\divergence}{div}
+
+% QM
+% dirac notation bra, ket, bracket, matrix element
+\newcommand{\bra}[1]{\mbox{\ensuremath{\langle #1|}}}
+\newcommand{\ket}[1]{\mbox{\ensuremath{| #1\rangle}}}
+\newcommand{\braket}[2]{\mbox{\ensuremath{\langle #1| #2\rangle}}}
+\newcommand{\mel}[3]{\ensuremath{\langle #2|#1| #3\rangle}}
+% a function operator
+\newcommand{\fop}[1][\rvec]{\widehat{\Psi}\text{\footnotesize$(#1, t)$}}
+\newcommand{\fopi}[1]{\widehat{\Psi#1}\text{\footnotesize$(\rvec, t)$}}
+\newcommand{\fopc}[1][\rvec]{\widehat{\Psi}^+\!\text{\footnotesize$(#1, t)$}}
+% any quantum mechanical operator
+\newcommand{\qop}[1]{\ensuremath{\widehat{#1}}}
+% the bohr magneton
+\newcommand{\mubohr}{\mu\kern-0.07em_\mathrm{B}}
+\newcommand{\wf}[1][]{\ensuremath{\phi_\mathrm{#1}}}
+\newcommand{\qnorm}[1]{\|#1\|_{\mathcal{L}^2}}
+
+
+\newcommand{\konz}{\ensuremath{c_\mathrm{mol}}}
+\newcommand{\csq}{\ensuremath{\chi^2}}
+
+%Sonstige
+\newcommand{\incflux}{\ensuremath{S_\mathrm{in}}}
+\newcommand{\excflux}{\ensuremath{S_\mathrm{exc}}}
+\newcommand{\dss}{\ensuremath{\tilde{d}}}
+\newcommand{\registered}{\text{\textregistered}}
+\newcommand{\gexc}{\ensuremath{g_{\mathrm{exc}}(\omega_\mathrm{exc})}}
+\newcommand{\gem}{\ensuremath{g_\mathrm{em}(\omega)}}
+\newcommand{\graman}{\ensuremath{g_\mathrm{EM}}}
+\newcommand{\dip}{\ensuremath{\vec{p}}}
+\newcommand{\rrD}{\ensuremath{\Gamma_\mathrm{r}}}
+\newcommand{\rriD}{\ensuremath{\Gamma_{\mathrm{r}\, 0}}}
+\newcommand{\retD}{\ensuremath{\Gamma_\mathrm{ET}}}
+\newcommand{\rnr}{\ensuremath{\gamma_{\mathrm{nr}\,0}}}
+%\newcommand{\mmu}[2]{\bvec{M}_{\mu\nu}^{#1\, #2}}
+%\newcommand{\nnu}[2]{\bvec{N}_{\mu\nu}^{#1\, #2}}
+%\newcommand{\ajmn}{a_{mn}^j}
+%\newcommand{\bjmn}{b_{mn}^j}
+%\newcommand{\pjlmn}{p_{mn}^{l}}
+%\newcommand{\qjlmn}{q_{mn}^{l}}
+\newcommand{\grw}{\ensuremath{g_\mathrm{r}(\omega)}}
+\newcommand{\getw}{\ensuremath{g_\mathrm{ET}(\omega)}}
+%\newcommand{\micro}{\ensuremath{\mu}}

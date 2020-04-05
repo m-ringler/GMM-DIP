@@ -1,0 +1,195 @@
+% $Id: diss.tex,v 1.54 2008/05/12 14:28:09 Moritz.Ringler Exp $
+% Das Latex-Paket lm muss DEINSTALLIERT werden. Sonst ersetzt
+% pdflatex die opentype-Schrift in den Grafiken durch die type1-Schrift,
+% was dann fehlende Glyphen zur Folge hat. Falls MikTeX versucht,
+% das lm-Paket herunterzuladen und zu installieren, muss die automatische
+% Paketinstallation "On-the-fly" abgeschaltet werden.
+\documentclass[ %
+    twoside,    % rechte und linke Seiten
+    headinclude=true,
+    footinclude=true,
+    pointlessnumbers,
+    openright      % Kapitel darf nur auf rechter Seite starten
+    %bibtotoc,   % Literaturverzeichnis in das Inhaltsverzeichnis
+    %liststotoc % andere Verzeichnisse aufnehmen
+    %idxtotoc    % und auch den Index
+]{scrartcl}
+\KOMAoptions{fontsize=10pt}
+\KOMAoptions{paper=a4}
+\KOMAoptions{bookmarkpackage=false}
+%\AtBeginDocument{\overfullrule=5pt}
+\usepackage{ifthen}             % Kontroll-Strukturen
+
+\newboolean{usehyperref}
+\setboolean{usehyperref}{true} % Ausgabe von PDFs mit (true) oder ohne (false)
+                               % Hyperlinks. HIER �NDERN.
+\newboolean{printrcs}
+\setboolean{printrcs}{false}     % Ausgabe mit (true) oder ohne (false) RCS-Versionsinformation
+
+\newcommand{\disstitle}{GMM-FIELD and GMM-DIP}
+
+% Ab hier nichts aendern.
+\ifpdfoutput{}{\setboolean{usehyperref}{false}} % Hyperref nur bei pdf-Ausgabe
+\newcommand{\ifhyperref}[2]{
+    \ifthenelse{\boolean{usehyperref}}{#1}{#2}} % hyperref ja oder nein
+
+\newcommand{\ifrcs}[2]{
+    \ifthenelse{\boolean{printrcs}}{#1}{#2}} % pritnrcs ja oder nein
+% alles was man fuer Formeln braucht...
+\usepackage[
+    fleqn          % Glgen nicht zentriert, sondern mit fester Einr�ckung.
+]{
+    amsmath        % AMS Mathematik-Paket
+}
+\usepackage{                    % alles was man fuer Formeln braucht...
+    amssymb,                    % AMS mathematische Symbole
+    amsfonts,                   % AMS Schriftarten
+    fixmath,                    % kursive griechische Grossbuchstaben im Mathematikmodus
+    icomma                      % Komma als Dezimaltrennzeichen im
+                                % Mathematikmodus (ausser wenn vor Leerzeichen)
+}
+\usepackage{pxfonts}            % Schriftart Palatino
+\renewcommand{\sfdefault}{cmss} % Computer Modern als Groteskschrift
+% Wuerde hier gerne Latin Modern verwenden. Das geht aber nicht, weil pdflatex
+% dann versucht den von Illustrator aus der OpenType-Version erzeugten
+% Latin Modern Type 1C Font in den Grafiken durch den Type 1 Font des
+% TeX-Systems zu substituieren und dabei ueber fehlende Glyphen stolpert,
+% die sich dann als Luecken im Grafiktext
+% auswirken. Das alles, wenn Latin Modern auch nur im
+% TeX System *installiert* ist.
+% Vermutlich kann man das verhindern, indem man irgendeine <font>.map Datei
+% editiert. Stattdessen habe ich jetzt einfach das lm-Paket komplett
+% deinstalliert.
+
+\usepackage{setspace}
+\AtBeginDocument{\onehalfspacing}
+
+\usepackage[a4paper]{geometry}   % Besseres Seitenlayout als mit KOMA
+\usepackage[automark]{scrpage2}  % scrpage
+\usepackage{setspace}            % Doppelter Zeilenabstand auf Titelseite
+
+\usepackage[                    % ein Symbol-Verzeichnis
+    german,                     % auf Deutsch
+    refpage,                    % mit Seitenzahl der ersten Verwendung
+    notintoc                    % nicht im Inhaltsverzeichnis
+]{nomencl}
+\renewcommand{\nompreamble}{Zahlenwerte fuer physikalische Konstanten nach
+CODATA \cite{CODATA2006}.}
+\usepackage{index}              % Indices, muss VOR hyperref eingebunden werden
+
+\ifhyperref{
+  \usepackage[              % Hyperlinks...
+      hyperfootnotes=false, % keine verlinkten Fu�noten
+      hyperindex=true,      % verlinkter Index
+      %pagebackref=true,     % R�ckreferenzen aus dem Literaturverzeichnis
+      bookmarks=true,       % Erzeuge pdf bookmarks
+      colorlinks = false,   % Keine farbige Linkauszeichnung
+      pdfborder=0 0 0,      % Keine Boxen um Links
+      breaklinks=true,
+      pdftitle={\disstitle},
+      pdfauthor={Moritz Ringler},
+      pdfcreator={Moritz Ringler},
+      pdfpagelayout=TwoPageRight, % doppelseitig mit ungerade Seiten rechts
+                                  % nicht-fortlaufende Anzeige
+      pdfstartview=Fit,           % ganze Seite an Fenster anpassen
+      pdflang=DE
+  ]{hyperref}
+}{% wenn keine Hyperrefs
+    \usepackage[pageref]{backref} % trotzdem Rueckverweise
+}
+\ifthenelse{\isundefined{\href}}{
+    \newcommand{\href}[2]{#2}     % nur Anker ausgeben
+                                  % Diese Definiton wird benoetigt, um
+                                  % den mit url-bst erstellten
+                                  % Bibliographiestil auch ohne
+                                  % Hyperref nutzen zu koennen
+}{}
+
+%\usepackage{a4}            % benutzt DIN A4 Papierformat
+%\usepackage[english, ngerman]{babel}      % deutsch nach neuer RS
+\usepackage[                    % schlauere Zitate
+    numbers,
+    sort&compress
+]{
+    natbib
+}
+\ifhyperref{
+    \usepackage{hypernat}  % hyperref Erweiterungen zu natbib
+}{}
+
+    \usepackage{microtype} % pdftex microtypographic features
+                           % -> weniger Box-Probleme
+
+\usepackage{
+    graphicx,                   % Grafikeinbindung
+    color,                      % Farbe
+    rcs                         % RCS-Versionsinformationen
+}
+
+\usepackage[perpage]{footmisc}  % Fussnoten pro Seite nummerieren
+\usepackage{
+    soul                        % Letterspacing, Kapitaelchen
+}
+\usepackage[latin1]{inputenc}   % ISO-8859-1 kodierter Text
+\usepackage[T1]{fontenc}        % T1-kodierte Schrift
+\usepackage{
+    textcomp,                   % Symbole im Text (needed for gensymb)
+    gensymb                     % generische Symbole und aufrechtes \mu
+}
+\usepackage[                    % Bild- und Tabellenbeschriftungen
+    format = plain,
+    font=footnotesize,
+    labelfont=bf
+]{caption}
+\usepackage{sidecap}            % Captions auch neben dem Bild.
+
+\usepackage{tocvsec2}           % Erlaubt lokales Setzen der Tiefe des TOCs
+                                % via \settocdepth
+
+\usepackage[figure]{algorithm2e} % Pseudocode. Das Paket erzeugt
+                                 % allerdings bei jedem Algorithmus seltsame
+                                 % hbox-Warnungen. Naja, zu spaet, das noch zu
+                                 % aendern.
+
+\usepackage{color}
+
+\usepackage{microtype} %
+
+%\clubpenalty=10000
+%\widowpenalty=10000
+%\displaywidowpenalty=10000
+           % Seitenumbruchkontrolle. Keine Ahnung ob's funktioniert...
+
+%% global definitions
+\input{definitionen}
+
+%% Metadata
+\author{Moritz Ringler}
+%\RCS $Date: 2008/05/12 14:28:09 $ \RCS $Revision: 1.54 $
+%\RCS $Id: diss.tex,v 1.54 2008/05/12 14:28:09 Moritz.Ringler Exp $
+\title{\disstitle}
+%\subtitle{Rev. \RCSRevision, \RCSDate}
+\date{July 2009}
+
+\begin{document}
+%\href{http://nbn-resolving.de/urn:nbn:de:bvb:19-84894}{urn:nbn:de:bvb:19-84894}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\input{diss/anhang/prog_en}
+
+
+%% Bibliographie
+\begin{raggedright}
+\bookmark[1]{\bibname}{bib}
+\bibliography{bib/all-doi2url}
+%\bookmark[1]{\bibliographyname}{bib}
+% Bibliographie-Stil mit urlbst erzeugt aus amsplain
+%\bibliographystyle{urlamsplain}
+% Bibliographie-Stil erzeugt mit custom-bib und urlbst
+\bibliographystyle{bst/umx}
+\end{raggedright}
+
+
+\end{document}
